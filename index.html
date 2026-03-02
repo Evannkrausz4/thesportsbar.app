@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Sports Bar — Coming Soon</title>
+  <meta name="description" content="The social app built exclusively for sports fans. Coming soon to iOS." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0F0F1A;
+      --card: #1A1A2E;
+      --gold: #FFB81C;
+      --white: #FFFFFF;
+      --muted: #9CA3AF;
+      --border: #2A2A3E;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(255,184,28,0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-mark {
+      width: 180px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+      animation: fade-up 0.6s ease both;
+    }
+
+    .logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 30px rgba(255,184,28,0.25));
+    }
+
+    .tagline {
+      font-size: 15px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 48px;
+      font-weight: 300;
+      animation: fade-up 0.7s 0.1s ease both;
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 48px;
+      animation: fade-up 0.7s 0.15s ease both;
+    }
+
+    .description {
+      font-size: 17px;
+      line-height: 1.65;
+      color: #D1D5DB;
+      text-align: center;
+      max-width: 480px;
+      margin-bottom: 48px;
+      font-weight: 300;
+      animation: fade-up 0.7s 0.2s ease both;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 52px;
+      animation: fade-up 0.7s 0.25s ease both;
+    }
+
+    .pill {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 7px 16px;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .pill.gold {
+      border-color: rgba(255,184,28,0.3);
+      color: var(--gold);
+      background: rgba(255,184,28,0.06);
+    }
+
+    .form-wrap {
+      width: 100%;
+      max-width: 420px;
+      animation: fade-up 0.7s 0.3s ease both;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .form-input {
+      flex: 1;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+      min-width: 0;
+    }
+
+    .form-input::placeholder { color: var(--muted); }
+    .form-input:focus { border-color: rgba(255,184,28,0.5); }
+    .form-input:disabled { opacity: 0.5; }
+
+    .form-btn {
+      background: var(--gold);
+      color: #0F0F1A;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 22px;
+      font-size: 15px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s, transform 0.15s;
+      letter-spacing: 0.01em;
+      flex-shrink: 0;
+    }
+
+    .form-btn:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
+    .form-btn:active { transform: translateY(0); }
+    .form-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .success-msg {
+      display: none;
+      text-align: center;
+      color: var(--gold);
+      font-size: 15px;
+      padding: 14px;
+      background: rgba(255,184,28,0.08);
+      border: 1px solid rgba(255,184,28,0.2);
+      border-radius: 10px;
+    }
+
+    .error-msg {
+      display: none;
+      text-align: center;
+      color: #EF4444;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .platform-note {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #4B5563;
+      text-align: center;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+      color: #374151;
+      letter-spacing: 0.05em;
+    }
+
+    footer a { color: #4B5563; text-decoration: none; }
+    footer a:hover { color: var(--muted); }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      .form-row { flex-direction: column; }
+      .form-btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="logo-mark">
+      <img src="logo.png" alt="The Sports Bar Logo" />
+    </div>
+
+    <p class="tagline">Coming Soon to iOS</p>
+    <div class="divider"></div>
+
+    <p class="description">
+      The social app built exclusively for sports fans. Post, follow, and debate — all sports, all the time. Personalized with your team's colors.
+    </p>
+
+    <div class="pills">
+      <span class="pill gold">🏆 Sports-Only Feed</span>
+      <span class="pill">AI Moderation</span>
+      <span class="pill">Team Color Theming</span>
+      <span class="pill">Live Scores</span>
+      <span class="pill">Verified Athletes & Journalists</span>
+      <span class="pill gold">📱 iPhone App</span>
+    </div>
+
+    <div class="form-wrap">
+      <label class="form-label">Get notified at launch</label>
+      <div class="form-row" id="formRow">
+        <input class="form-input" type="email" placeholder="your@email.com" id="emailInput" />
+        <button class="form-btn" id="submitBtn" onclick="handleSubmit()">Notify Me</button>
+      </div>
+      <div class="success-msg" id="successMsg">
+        ✓ You're on the list. We'll see you at the bar.
+      </div>
+      <div class="error-msg" id="errorMsg">
+        Something went wrong. Please try again.
+      </div>
+      <p class="platform-note">iOS · iPhone Only · Free to Download</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 The Sports Bar &nbsp;·&nbsp; <a href="mailto:hello@thesportsbar.app">hello@thesportsbar.app</a> &nbsp;·&nbsp; <a href="/privacy">Privacy Policy</a></p>
+  </footer>
+
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzcCjhBPHsxxuXbGtetyyeGJ71WTruY4S0cUb6HRI3FMRRV97m5A7cewNRP29ABLn6V7w/exec';
+
+    function handleSubmit() {
+      const input = document.getElementById('emailInput');
+      const btn = document.getElementById('submitBtn');
+      const email = input.value.trim();
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Validate
+      if (!re.test(email)) {
+        input.style.borderColor = '#EF4444';
+        input.focus();
+        setTimeout(() => input.style.borderColor = '', 1500);
+        return;
+      }
+
+      // Loading state
+      btn.disabled = true;
+      input.disabled = true;
+      btn.textContent = 'Saving...';
+      document.getElementById('errorMsg').style.display = 'none';
+
+      // Submit to Google Sheets via no-cors fetch
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'email=' + encodeURIComponent(email)
+      })
+      .then(() => {
+        // no-cors means we can't read the response, but if we get here it worked
+        document.getElementById('formRow').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      })
+      .catch(() => {
+        btn.disabled = false;
+        input.disabled = false;
+        btn.textContent = 'Notify Me';
+        document.getElementById('errorMsg').style.display = 'block';
+      });
+    }
+
+    document.getElementById('emailInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleSubmit();
+    });
+  </script>
+
+</body>
+</html>
