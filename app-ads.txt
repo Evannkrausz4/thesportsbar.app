@@ -1,0 +1,9 @@
+# app-ads.txt for thesportsbar.app
+# This file authorizes Google AdMob to serve ads in The Sports Bar iOS app.
+# Learn more: https://iabtechlab.com/ads-txt/
+#
+# FORMAT: <ad network domain>, <publisher ID>, <relationship type>
+# Replace YOUR_ADMOB_PUBLISHER_ID below with your actual AdMob Publisher ID
+# (found in AdMob dashboard under Settings → Account Info, format: pub-XXXXXXXXXXXXXXXX)
+
+google.com, YOUR_ADMOB_PUBLISHER_ID, DIRECT, f08c47fec0942fa0
